@@ -1,6 +1,6 @@
 import { useFrame } from "@react-three/fiber"
 import { CuboidCollider, RigidBody } from "@react-three/rapier"
-import { useMemo, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { BoxGeometry, Euler, Quaternion } from "three"
 import { Text } from "@react-three/drei"
 const boxGeo = new BoxGeometry()
@@ -188,12 +188,10 @@ const Level = ({count = 5,types = [SpinnerBlock,LimboBlock,AxeBlock],seed}) => {
         <>
             <StartBlock/>
             {
-                useMemo(()=>
-                    [...new Array(count)].map((_,index)=> {
-                        const Block = types[Math.floor(Math.random()*types.length)]
-                        return <Block key={index} position={[0,0,-4 * (index+1)]}/>
-                    },[count,types,seed])
-                )
+                [...new Array(count)].map((_,index)=> {
+                    const Block = types[Math.floor(Math.random()*types.length)]
+                    return <Block key={index} position={[0,0,-4 * (index+1)]}/>
+                })
             }
             <EndBlock position={[0,0,-4*(count+1)]}/>
             <Bounds length={count+2}/>

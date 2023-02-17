@@ -52,7 +52,7 @@ const Player = () => {
             unsubAny()
             unsubReset()
         }
-    },[])
+    })
     useFrame(({camera},delta)=>{
         const {forward,backward,rightward,leftward} = getKeys()
         const impluse = { 
